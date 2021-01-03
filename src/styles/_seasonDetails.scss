@@ -1,0 +1,45 @@
+.seasonDetails {
+    flex: 1 1 70%;
+    background-color: $white;
+    padding: 0;
+}
+
+.seasonDetails__header {
+    background: $orange;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+
+.seasonDetails__mainContent {
+    padding: 1rem 2rem;
+}
+
+.seasonDetails__winners {
+    display: flex;
+}
+
+.seasonDetails__card {
+    flex: 1 1 50%;
+    text-align: center;
+    background: $black;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 1rem;
+
+    &:first-child {
+        margin-right: 1rem;
+    }
+}
+
+.seasonDetails__title {
+    color: $orange;
+    margin-bottom: 0.5rem;
+}
+
+.seasonDetails__name {
+    font-size: 1.5rem;
+    color: $white;
+}

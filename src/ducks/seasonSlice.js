@@ -3,6 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     season: 0,
     races: [],
+    drivers: [],
+    constructors: [],
     isLoading: false,
     isError: false,
 }
@@ -18,6 +20,8 @@ const seasonSlice = createSlice({
             state.isLoading = false;
             state.season = action.payload.season;
             state.races = action.payload.seasonData;
+            state.drivers = action.payload.driverData;
+            state.constructors = action.payload.constructorData;
             state.isError = false;
         },
         loadSeasonError: state => {
@@ -30,15 +34,26 @@ const seasonSlice = createSlice({
 //thunk
 export const loadSeason = (season) => {
     return async (dispatch) => {
-        const completeUrl = 'http://ergast.com/api/f1/' + season + '.json'
+        const seasonUrl = 'http://ergast.com/api/f1/' + season + '.json';
+        const driverUrl = 'http://ergast.com/api/f1/' + season + '/driverStandings.json';
+        const constructorUrl = 'http://ergast.com/api/f1/' + season + '/constructorStandings.json';
 
         dispatch(loadSeasonStart());
 
         try {
-            const response = await fetch(completeUrl);
-            const data = await response.json();
-            const seasonData = await data.MRData.RaceTable.Races;
-            dispatch(loadSeasonComplete({seasonData, season}));
+            const seasonResponse = await fetch(seasonUrl);
+            const seasonJson = await seasonResponse.json();
+            const seasonData = await seasonJson.MRData.RaceTable.Races;
+
+            const driverResponse = await fetch(driverUrl);
+            const driverJson = await driverResponse.json();
+            const driverData = await driverJson.MRData.StandingsTable.StandingsLists[0].DriverStandings;
+
+            const constructorResponse = await fetch(constructorUrl);
+            const constructorJson = await constructorResponse.json();
+            const constructorData = await constructorJson.MRData.StandingsTable.StandingsLists[0].ConstructorStandings;
+
+            dispatch(loadSeasonComplete({seasonData, driverData, constructorData, season}));
         } catch (error) {
             dispatch(loadSeasonError());
         }

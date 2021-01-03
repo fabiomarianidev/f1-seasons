@@ -15,6 +15,8 @@ describe("testing reducer", () => {
         expect(reducer(undefined, {})).toEqual({
             season: 0,
             races: [],
+            drivers: [],
+            constructors: [],
             isLoading: false,
             isError: false,
         })
@@ -23,6 +25,8 @@ describe("testing reducer", () => {
         const inputState = {
             season: 0,
             races: [],
+            drivers: [],
+            constructors: [],
             isLoading: false,
             isError: false,
         }
@@ -33,6 +37,8 @@ describe("testing reducer", () => {
         expect(reducer(undefined, {type: loadSeasonStart})).toEqual({
             season: 0,
             races: [],
+            drivers: [],
+            constructors: [],
             isLoading: true,
             isError: false,
         })
@@ -57,6 +63,8 @@ describe("testing reducer", () => {
         expect(reducer(undefined, {type: loadSeasonError})).toEqual({
             season: 0,
             races: [],
+            drivers: [],
+            constructors: [],
             isLoading: false,
             isError: true,
         })
