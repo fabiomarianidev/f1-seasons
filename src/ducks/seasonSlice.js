@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+    season: 0,
     races: [],
     isLoading: false,
     isError: false,
@@ -15,7 +16,8 @@ const seasonSlice = createSlice({
         },
         loadSeasonComplete: (state, action) => {
             state.isLoading = false;
-            state.races = action.payload;
+            state.season = action.payload.season;
+            state.races = action.payload.seasonData;
             state.isError = false;
         },
         loadSeasonError: state => {
@@ -26,9 +28,9 @@ const seasonSlice = createSlice({
 })
 
 //thunk
-export const loadSeason = (year) => {
+export const loadSeason = (season) => {
     return async (dispatch) => {
-        const completeUrl = 'http://ergast.com/api/f1/' + year + '.json'
+        const completeUrl = 'http://ergast.com/api/f1/' + season + '.json'
 
         dispatch(loadSeasonStart());
 
@@ -36,7 +38,7 @@ export const loadSeason = (year) => {
             const response = await fetch(completeUrl);
             const data = await response.json();
             const seasonData = await data.MRData.RaceTable.Races;
-            dispatch(loadSeasonComplete(seasonData));
+            dispatch(loadSeasonComplete({seasonData, season}));
         } catch (error) {
             dispatch(loadSeasonError());
         }

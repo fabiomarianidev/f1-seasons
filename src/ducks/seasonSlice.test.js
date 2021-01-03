@@ -13,6 +13,7 @@ beforeEach( async function () {
 describe("testing reducer", () => {
     it("should return initial state if no state is supplied", ()=>{
         expect(reducer(undefined, {})).toEqual({
+            season: 0,
             races: [],
             isLoading: false,
             isError: false,
@@ -20,6 +21,7 @@ describe("testing reducer", () => {
     }),
     test("default reducer", ()=> {
         const inputState = {
+            season: 0,
             races: [],
             isLoading: false,
             isError: false,
@@ -29,26 +31,31 @@ describe("testing reducer", () => {
     }),
     test("loadSeasonStart action", ()=>{
         expect(reducer(undefined, {type: loadSeasonStart})).toEqual({
+            season: 0,
             races: [],
             isLoading: true,
             isError: false,
         })
     }),
     test("loadSeasonComplete action", () => {
-        const payload = [
+        const payload = {
+            seasonData: [
                 { round: 1 },
                 { round: 2 }
-            ]
+            ],
+            season: 2020,
+        }
 
         expect(reducer(undefined, {
             type: loadSeasonComplete,
             payload: payload
         })).toEqual(
-            {races: payload, isLoading: false, isError: false}
+            {season: payload.season, races: payload.seasonData, isLoading: false, isError: false}
         )
     }),
     test("loadSeasonError action", () => {
         expect(reducer(undefined, {type: loadSeasonError})).toEqual({
+            season: 0,
             races: [],
             isLoading: false,
             isError: true,
@@ -80,6 +87,7 @@ describe("testing async function loadseason", () => {
     
         //setting up the mocked store
         const store = mockStore({
+            season: 2020,
             races: [],
             isLoading: false,
             isError: false,
@@ -92,18 +100,21 @@ describe("testing async function loadseason", () => {
             },
             {
                 type: loadSeasonComplete.toString(),
-                payload: [ 
-                    {
-                        "round": "1",
-                        "raceName": "Race 1"
-                    }, 
-                    {
-                        "round": "2",
-                        "raceName": "Race 2"
-                    }
-                ]
+                payload: {
+                    seasonData: [ 
+                        {
+                            "round": "1",
+                            "raceName": "Race 1"
+                        }, 
+                        {
+                            "round": "2",
+                            "raceName": "Race 2"
+                        }
+                    ],
+                    season: 2020
+                }
             }
-            ]
+        ]
     
         return(store.dispatch(loadSeason(2020))).then( () => {
             expect(fetch).toHaveBeenCalledTimes(1);
