@@ -1,0 +1,27 @@
+.raceItem {
+    list-style-type: none;
+    background: $black;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.raceItem > a {
+    text-decoration: none;
+}
+
+.raceItem:last-child {
+    margin-bottom: unset;
+}
+
+.raceItem__race {
+    color: $white;
+    font-weight: bold;
+    padding-bottom: 0.5rem;
+}
+
+.raceItem__circuit {
+    color: $orange;
+    font-weight: bold;
+}

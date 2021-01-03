@@ -1,0 +1,31 @@
+.seasonSelector {
+    padding: 1rem;
+    text-align: center;
+    background: $orange;
+}
+
+.seasonSelector__year {
+    color: $white;
+    font-size: 2.25rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & > div {
+        margin: 0 1rem;
+    }
+}
+
+.seasonSelector__summary {
+    color: $black;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.seasonSelector__button {
+    color: $white;
+    background: none;
+    border: none;
+}

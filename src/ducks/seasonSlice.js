@@ -26,12 +26,14 @@ const seasonSlice = createSlice({
 })
 
 //thunk
-export const loadSeason = () => {
+export const loadSeason = (year) => {
     return async (dispatch) => {
+        const completeUrl = 'http://ergast.com/api/f1/' + year + '.json'
+
         dispatch(loadSeasonStart());
 
         try {
-            const response = await fetch('http://ergast.com/api/f1/2020.json');
+            const response = await fetch(completeUrl);
             const data = await response.json();
             const seasonData = await data.MRData.RaceTable.Races;
             dispatch(loadSeasonComplete(seasonData));
@@ -40,6 +42,8 @@ export const loadSeason = () => {
         }
     }
 }
+
+export const selectSeason = (state) => state.season;
 
 export const { loadSeasonStart, loadSeasonComplete, loadSeasonError} = seasonSlice.actions;
 export default seasonSlice.reducer;

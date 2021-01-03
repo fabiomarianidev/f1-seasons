@@ -1,0 +1,12 @@
+@import "./styles/variables";
+@import "./styles//global";
+@import "./styles/header.scss";
+@import "./styles/main";
+@import "./styles/sidebar";
+@import "./styles/seasonSelector";
+@import "./styles/raceItem";
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: $gray;
+}

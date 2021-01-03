@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 
-import './index.css';
+import "typeface-roboto";
+
 import App from './App';
 import reducer from "./ducks";
 

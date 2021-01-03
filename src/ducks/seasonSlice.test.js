@@ -105,7 +105,7 @@ describe("testing async function loadseason", () => {
             }
             ]
     
-        return(store.dispatch(loadSeason())).then( () => {
+        return(store.dispatch(loadSeason(2020))).then( () => {
             expect(fetch).toHaveBeenCalledTimes(1);
             expect(store.getActions()).toEqual(expectedActions);
             expect(fetch).toHaveBeenCalledWith('http://ergast.com/api/f1/2020.json');
@@ -130,7 +130,7 @@ describe("testing async function loadseason", () => {
             }
         ]
     
-        return(store.dispatch(loadSeason())).then( () => {
+        return(store.dispatch(loadSeason(2020))).then( () => {
             expect(fetch).toHaveBeenCalledTimes(1);
             expect(store.getActions()).toEqual(expectedActions);
             expect(fetch).toHaveBeenCalledWith('http://ergast.com/api/f1/2020.json');
