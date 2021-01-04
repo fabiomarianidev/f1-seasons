@@ -1,6 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
+
 import { selectSeason } from "../ducks/seasonSlice";
+
+import DriverStandings from "./DriverStandings";
 
 const SeasonDetails = () => {
     const { season, drivers, constructors, isLoading, isError } = useSelector(selectSeason);
@@ -38,6 +41,7 @@ const SeasonDetails = () => {
                             <div className="seasonDetails__name">{winningConstructor}</div>
                         </div>
                     </div>
+                    <DriverStandings drivers={drivers} />
                 </div>
             </>
         )

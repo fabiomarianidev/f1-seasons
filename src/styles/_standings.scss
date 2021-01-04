@@ -1,0 +1,33 @@
+.standings {
+    background: $gray;
+    color: $black;
+    margin: 1rem 0;
+}
+
+.standings__header {
+    background: $black;
+    color: $white;
+    text-align: center;
+
+    padding: 1rem;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    p {
+        margin: 0;
+    }
+}
+
+.standings table {
+    width: 100%;
+    border-collapse: collapse;
+
+    thead {
+        text-align: left;
+    }
+
+    tbody tr:nth-child(odd) {
+        background-color: lightgray;
+    }
+
+}
