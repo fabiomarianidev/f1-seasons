@@ -1,10 +1,10 @@
-.standings {
+.tableComponent {
     background: $gray;
     color: $black;
     margin: 1rem 0;
 }
 
-.standings__header {
+.tableComponent__header {
     background: $black;
     color: $white;
     text-align: center;
@@ -18,7 +18,7 @@
     }
 }
 
-.standings table {
+.tableComponent table {
     width: 100%;
     border-collapse: collapse;
 

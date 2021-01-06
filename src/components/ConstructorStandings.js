@@ -1,28 +1,24 @@
 import React from "react";
 
-const DriverStandings = ({drivers}) => (
+const ConstructorStandings = ({constructors}) => (
     <section className="tableComponent">
         <header className="tableComponent__header">
-            <p>Drivers Standings</p>
+            <p>Constructors Standings</p>
         </header>
         <table>
             <thead>
                 <tr>
                     <th>Position</th>
-                    <th>Driver</th>
                     <th>Constructor</th>
                     <th>Points</th>
-                    <th>Wins</th>
                 </tr>
             </thead>
             <tbody>
-                {drivers.map( (item) => (
+                {constructors.map(item => (
                     <tr key={item.position}>
                         <td>{item.position}</td>
-                        <td>{item.Driver.givenName} {item.Driver.familyName}</td>
-                        <td>{item.Constructors[0].name}</td>
+                        <td>{item.Constructor.name}</td>
                         <td>{item.points}</td>
-                        <td>{item.wins}</td>
                     </tr>
                 ))}
             </tbody>
@@ -30,4 +26,4 @@ const DriverStandings = ({drivers}) => (
     </section>
 )
 
-export default DriverStandings;
+export default ConstructorStandings;
