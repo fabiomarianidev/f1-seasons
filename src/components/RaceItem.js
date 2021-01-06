@@ -1,9 +1,11 @@
 import React from "react";
 
-const RaceItem = ({raceName, circuitName}) => {
+const RaceItem = ({raceName, circuitName, season, round}) => {
+    const link = `/${season}${round}`;
+
     return (
         <li className="raceItem">
-            <a href="#">
+            <a href={link}>
                 <div className="raceItem__race">{raceName}</div>
                 <div className="raceItem__circuit">{circuitName}</div>
             </a>

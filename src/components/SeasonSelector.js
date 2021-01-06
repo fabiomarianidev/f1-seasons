@@ -39,7 +39,7 @@ const SeasonSelector = () => {
                     <FontAwesomeIcon icon={faChevronRight}/>
                 </button>
             </div>
-            <a className="seasonSelector__summary" href="#">Season Summary</a>
+            <a className="seasonSelector__summary" href="/">Season Summary</a>
         </section>
     )
 }

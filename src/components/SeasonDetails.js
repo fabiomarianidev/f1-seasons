@@ -29,18 +29,18 @@ const SeasonDetails = () => {
 
         return(
             <>
-                <header className="seasonDetails__header">
+                <header className="details__header">
                     <p>Results for the {season} season</p>
                 </header>
-                <div className="seasonDetails__mainContent">
-                    <div className="seasonDetails__winners">
-                        <div className="seasonDetails__card">
-                            <div className="seasonDetails__title">Winning driver</div>
-                            <div className="seasonDetails__name">{winningDriver}</div>
+                <div className="details__mainContent">
+                    <div className="details__winners">
+                        <div className="details__card">
+                            <div className="details__title">Winning driver</div>
+                            <div className="details__name">{winningDriver}</div>
                         </div>
-                        <div className="seasonDetails__card">
-                            <div className="seasonDetails__title">Winning team</div>
-                            <div className="seasonDetails__name">{winningConstructor}</div>
+                        <div className="details__card">
+                            <div className="details__title">Winning team</div>
+                            <div className="details__name">{winningConstructor}</div>
                         </div>
                     </div>
                     <DriverStandings drivers={drivers} />
@@ -52,7 +52,7 @@ const SeasonDetails = () => {
     }
 
     return(
-        <section className="seasonDetails has-shadow">
+        <section className="details has-shadow">
             {displayDetails()}
         </section>
     )
