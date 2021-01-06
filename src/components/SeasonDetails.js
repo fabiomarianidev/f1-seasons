@@ -4,9 +4,11 @@ import { useSelector } from "react-redux";
 import { selectSeason } from "../ducks/seasonSlice";
 
 import DriverStandings from "./DriverStandings";
+import ConstructorStandings from "./ConstructorStandings";
+import Calendar from "./Calendar";
 
 const SeasonDetails = () => {
-    const { season, drivers, constructors, isLoading, isError } = useSelector(selectSeason);
+    const { season, races, drivers, constructors, isLoading, isError } = useSelector(selectSeason);
 
 
     const displayDetails = () => {
@@ -42,6 +44,8 @@ const SeasonDetails = () => {
                         </div>
                     </div>
                     <DriverStandings drivers={drivers} />
+                    <ConstructorStandings constructors={constructors} />
+                    <Calendar races={races} />
                 </div>
             </>
         )
