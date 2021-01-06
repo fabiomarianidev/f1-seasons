@@ -12,7 +12,6 @@ const Calendar = ({races}) => {
                         <th>Round</th>
                         <th>Race</th>
                         <th>Circuit</th>
-                        <th>Location</th>
                         <th>Date</th>
                     </tr>
                 </thead>
@@ -21,8 +20,7 @@ const Calendar = ({races}) => {
                         <tr>
                             <td>{item.round}</td>
                             <td>{item.raceName}</td>
-                            <td>{item.Circuit.circuitName}</td>
-                            <td>{item.Circuit.Location.locality}, {item.Circuit.Location.country}</td>
+                            <td>{item.Circuit.circuitName}, {item.Circuit.Location.locality}, {item.Circuit.Location.country}</td>
                             <td>{item.date}</td>
                         </tr>
                     ))}
