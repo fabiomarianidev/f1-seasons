@@ -17,7 +17,7 @@ const Calendar = ({races}) => {
                 </thead>
                 <tbody>
                     {races.map(item => (
-                        <tr>
+                        <tr key={item.round}>
                             <td>{item.round}</td>
                             <td>{item.raceName}</td>
                             <td>{item.Circuit.circuitName}, {item.Circuit.Location.locality}, {item.Circuit.Location.country}</td>

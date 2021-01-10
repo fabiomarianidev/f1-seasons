@@ -13,14 +13,14 @@ import './App.scss';
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Main>
-        <Sidebar />
-        <Router>
-          <Route exact path="/" component={SeasonDetails} />
-          <Route path="/:race" component={RaceDetails} />
-        </Router>
-      </Main>
+      <Router>
+        <Header />
+        <Main>
+          <Sidebar />
+            <Route exact path="/" component={SeasonDetails} />
+            <Route path="/:race" component={RaceDetails} />
+        </Main>
+      </Router>
     </div>
   );
 }

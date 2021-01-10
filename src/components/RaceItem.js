@@ -1,14 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const RaceItem = ({raceName, circuitName, season, round}) => {
     const link = `/${season}${round}`;
 
     return (
         <li className="raceItem">
-            <a href={link}>
+            <Link to={link}>
                 <div className="raceItem__race">{raceName}</div>
                 <div className="raceItem__circuit">{circuitName}</div>
-            </a>
+            </Link>
         </li>
     )
 }

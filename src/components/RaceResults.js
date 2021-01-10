@@ -3,7 +3,6 @@ import React from "react";
 const RaceResults = ({results}) => {
 
     const evaluateTime = (driver) => {
-        console.log(driver)
         if (driver.status === "Finished") {
             return driver.Time.time;
         } else {

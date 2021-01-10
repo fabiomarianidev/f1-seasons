@@ -1,29 +1,34 @@
 import React, { useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { loadSeason } from "../ducks/seasonSlice";
+
+import { loadSeason, selectSeason } from "../ducks/seasonSlice";
 import { getCurrentYear } from "../functions/dateFunctions";
 
 import SeasonModal from "./SeasonModal";
 
 const SeasonSelector = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
 
-    //select last completed season as initial value
-    const [ season, setSeason ] = useState(getCurrentYear() - 1);
+    const { season } = useSelector(selectSeason);
+
     const [ modalIsVisible, setModalIsVisible ] = useState(false);
 
     const handlePrevSeason = () => {
         // add check for first season
-        setSeason(season - 1);
+        dispatch( loadSeason((season - 1)));
+        history.push("/");
     }
 
     const handleNextSeason = () => {
         // only allow up to last season
         if (season < getCurrentYear() - 1) {
-            setSeason(season + 1);
+            dispatch(loadSeason(season + 1));
+            history.push("/");
         }
     }
 
@@ -32,7 +37,8 @@ const SeasonSelector = () => {
     } 
 
     useEffect( () => {
-        dispatch(loadSeason(season));
+        if ( season === 0 ) 
+            dispatch(loadSeason((getCurrentYear() - 1)));
     }, [dispatch, season] )
 
     return(
@@ -47,7 +53,7 @@ const SeasonSelector = () => {
                         <FontAwesomeIcon icon={faChevronRight}/>
                     </button>
                 </div>
-                <a className="seasonSelector__summary" href="/">Season Summary</a>
+                <Link className="seasonSelector__summary" to="/">Season Summary</Link>
                 { modalIsVisible && <SeasonModal handleClose={handleSeasonOnClick}/> }
             </section>
 
