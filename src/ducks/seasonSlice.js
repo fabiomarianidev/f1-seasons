@@ -7,6 +7,7 @@ const initialState = {
     constructors: [],
     isLoading: false,
     isError: false,
+    errorContent: "",
 }
 
 const seasonSlice = createSlice({
@@ -24,9 +25,10 @@ const seasonSlice = createSlice({
             state.constructors = action.payload.constructorData;
             state.isError = false;
         },
-        loadSeasonError: state => {
+        loadSeasonError: (state, action) => {
             state.isLoading = false;
             state.isError = true;
+            state.errorContent = action.payload;
         }
     }
 })
@@ -55,7 +57,7 @@ export const loadSeason = (season) => {
 
             dispatch(loadSeasonComplete({seasonData, driverData, constructorData, season}));
         } catch (error) {
-            dispatch(loadSeasonError());
+            dispatch(loadSeasonError({error}));
         }
     }
 }

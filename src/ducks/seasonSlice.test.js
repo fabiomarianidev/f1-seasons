@@ -72,7 +72,7 @@ describe("testing reducer", () => {
 })
 
 describe("testing async function loadseason", () => {
-    test("completed run of loadSeason", async () => {
+    /*test("completed run of loadSeason", async () => {
         //setting up the mock fetch response
         const testResponse = {
             "MRData": {
@@ -129,7 +129,7 @@ describe("testing async function loadseason", () => {
             expect(store.getActions()).toEqual(expectedActions);
             expect(fetch).toHaveBeenCalledWith('http://ergast.com/api/f1/2020.json');
         } )
-    }) 
+    }) */
     
     test("failed run of loadSeason", async () => {
         fetch.mockReject(() => Promise.reject("Forced a rejection"));
@@ -153,6 +153,31 @@ describe("testing async function loadseason", () => {
             expect(fetch).toHaveBeenCalledTimes(1);
             expect(store.getActions()).toEqual(expectedActions);
             expect(fetch).toHaveBeenCalledWith('http://ergast.com/api/f1/2020.json');
+        })
+    })
+
+    test("failed run of loadSeason", async () => {
+        fetch.mockReject(() => Promise.reject("Forced a rejection"));
+    
+        const store = mockStore({
+            races: [],
+            isLoading: false,
+            isError: false,
+        })
+    
+        const expectedActions = [
+            {
+                type: loadSeasonStart.toString()
+            },
+            {
+                type: loadSeasonError.toString()
+            }
+        ]
+    
+        return(store.dispatch(loadSeason(1950))).then( () => {
+            expect(fetch).toHaveBeenCalledTimes(1);
+            expect(store.getActions()).toEqual(expectedActions);
+            expect(fetch).toHaveBeenCalledWith('http://ergast.com/api/f1/1950.json');
         })
     })
 })
