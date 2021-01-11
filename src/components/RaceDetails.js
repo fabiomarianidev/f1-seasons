@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import RaceResults from "./RaceResults";
 import StandingsAfterRace from "./StandingsAfterRace";
 
+import { formatDate } from "../functions/dateFunctions";
+
 const RaceDetails = ({ match }) => {
     const { params: { race } } = match;
 
@@ -49,7 +51,7 @@ const RaceDetails = ({ match }) => {
                 </header>
                 <div className="details__mainContent">
                     <div className="details__race">
-                        Held on <span>{date}</span> at <span>{circuit}, {location}</span>
+                        Held on <span>{formatDate(date)}</span> at <span>{circuit}, {location}</span>
                     </div>
                     <RaceResults results={results} />
                     <StandingsAfterRace season={season} round={round} />

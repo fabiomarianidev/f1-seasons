@@ -1,5 +1,7 @@
 import React from "react";
 
+import { formatDate } from "../functions/dateFunctions";
+
 const Calendar = ({races}) => {
     return (
         <section className="tableComponent">
@@ -21,7 +23,7 @@ const Calendar = ({races}) => {
                             <td>{item.round}</td>
                             <td>{item.raceName}</td>
                             <td>{item.Circuit.circuitName}, {item.Circuit.Location.locality}, {item.Circuit.Location.country}</td>
-                            <td>{item.date}</td>
+                            <td>{formatDate(item.date)}</td>
                         </tr>
                     ))}
                 </tbody>
