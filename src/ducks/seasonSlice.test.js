@@ -150,13 +150,13 @@ describe("testing async function loadseason", () => {
         ]
     
         return(store.dispatch(loadSeason(2020))).then( () => {
-            expect(fetch).toHaveBeenCalledTimes(1);
+            expect(fetch).toHaveBeenCalledTimes(3);
             expect(store.getActions()).toEqual(expectedActions);
             expect(fetch).toHaveBeenCalledWith('http://ergast.com/api/f1/2020.json');
         })
     })
 
-    test("failed run of loadSeason", async () => {
+    test("failed run of loadSeason, with season 1950", async () => {
         fetch.mockReject(() => Promise.reject("Forced a rejection"));
     
         const store = mockStore({
@@ -175,7 +175,7 @@ describe("testing async function loadseason", () => {
         ]
     
         return(store.dispatch(loadSeason(1950))).then( () => {
-            expect(fetch).toHaveBeenCalledTimes(1);
+            expect(fetch).toHaveBeenCalledTimes(3);
             expect(store.getActions()).toEqual(expectedActions);
             expect(fetch).toHaveBeenCalledWith('http://ergast.com/api/f1/1950.json');
         })

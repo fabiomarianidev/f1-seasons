@@ -33,6 +33,27 @@ const seasonSlice = createSlice({
 
 //thunk
 export const loadSeason = (season) => {
+    const asyncLoadSeason = async (url) => {
+        const seasonResponse = await fetch(url);
+        const seasonJson = await seasonResponse.json();
+        const seasonData = await seasonJson.MRData.RaceTable.Races;
+        return (seasonData);
+    }
+
+    const asyncLoadDriver = async (url) => {
+        const driverResponse = await fetch(url);
+        const driverJson = await driverResponse.json();
+        const driverData = await driverJson.MRData.StandingsTable.StandingsLists[0].DriverStandings;
+        return(driverData);
+    }
+
+    const asyncLoadConstructor = async (url) => {
+        const constructorResponse = await fetch(url);
+        const constructorJson = await constructorResponse.json();
+        const constructorData = await constructorJson.MRData.StandingsTable.StandingsLists[0].ConstructorStandings;
+        return(constructorData);
+    }
+
     return async (dispatch) => {
         const seasonUrl = 'http://ergast.com/api/f1/' + season + '.json';
         const driverUrl = 'http://ergast.com/api/f1/' + season + '/driverStandings.json';
@@ -41,17 +62,11 @@ export const loadSeason = (season) => {
         dispatch(loadSeasonStart());
 
         try {
-            const seasonResponse = await fetch(seasonUrl);
-            const seasonJson = await seasonResponse.json();
-            const seasonData = await seasonJson.MRData.RaceTable.Races;
-
-            const driverResponse = await fetch(driverUrl);
-            const driverJson = await driverResponse.json();
-            const driverData = await driverJson.MRData.StandingsTable.StandingsLists[0].DriverStandings;
-
-            const constructorResponse = await fetch(constructorUrl);
-            const constructorJson = await constructorResponse.json();
-            const constructorData = await constructorJson.MRData.StandingsTable.StandingsLists[0].ConstructorStandings;
+            const [seasonData, driverData, constructorData] = await Promise.all([
+                asyncLoadSeason(seasonUrl),
+                asyncLoadDriver(driverUrl),
+                asyncLoadConstructor(constructorUrl),
+            ])
 
             dispatch(loadSeasonComplete({seasonData, driverData, constructorData, season}));
         } catch (error) {
