@@ -15,6 +15,11 @@
     }
 }
 
+.modal__title {
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
 .modal__selector {
     display: flex;
     flex-flow: row wrap;

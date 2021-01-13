@@ -44,11 +44,11 @@ const SeasonSelector = () => {
     return(
         <>
             <section className="seasonSelector">
-                <div className="seasonSelector__year">
+                <div className="seasonSelector__selector">
                     <button className="seasonSelector__button" onClick={handlePrevSeason}>
                         <FontAwesomeIcon icon={faChevronLeft}/>
                     </button>
-                    <div onClick={handleSeasonOnClick}>{season}</div>
+                    <div className="seasonSelector__year" onClick={handleSeasonOnClick}>{season}</div>
                     <button className="seasonSelector__button" onClick={handleNextSeason}>
                         <FontAwesomeIcon icon={faChevronRight}/>
                     </button>

@@ -2,6 +2,8 @@ import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadSeason, selectSeason } from "../ducks/seasonSlice";
 import { useHistory } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 const SeasonModal = ({handleClose}) => {
 
@@ -68,9 +70,9 @@ const SeasonModal = ({handleClose}) => {
     return(
         <div className="modal">
             <div className="modal__header">
-                <button onClick={handlePrevPage}>-</button>
-                <p>Select a season</p>
-                <button onClick={handleNextPage}>+</button>
+                <button onClick={handlePrevPage}><FontAwesomeIcon icon={faChevronLeft} /></button>
+                <p className="modal__title">Select a season</p>
+                <button onClick={handleNextPage}><FontAwesomeIcon icon={faChevronRight} /></button>
             </div>
             {displaySeasons()}
             <button onClick={handleClose}>Close</button>

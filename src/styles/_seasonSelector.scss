@@ -5,7 +5,7 @@
     position: relative;
 }
 
-.seasonSelector__year {
+.seasonSelector__selector {
     color: $white;
     font-size: 2.25rem;
     font-weight: bold;
@@ -17,6 +17,10 @@
     & > div {
         margin: 0 1rem;
     }
+}
+
+.seasonSelector__year {
+    cursor: pointer;
 }
 
 .seasonSelector__summary {

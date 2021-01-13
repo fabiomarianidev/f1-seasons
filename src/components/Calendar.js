@@ -22,7 +22,7 @@ const Calendar = ({races}) => {
                         <tr key={item.round}>
                             <td>{item.round}</td>
                             <td>{item.raceName}</td>
-                            <td>{item.Circuit.circuitName}, {item.Circuit.Location.locality}, {item.Circuit.Location.country}</td>
+                            <td>{item.Circuit.circuitName}<br/>{item.Circuit.Location.locality}, {item.Circuit.Location.country}</td>
                             <td>{formatDate(item.date)}</td>
                         </tr>
                     ))}
