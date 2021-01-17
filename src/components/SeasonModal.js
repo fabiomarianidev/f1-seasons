@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadSeason, selectSeason } from "../ducks/seasonSlice";
 import { useHistory } from "react-router-dom";
@@ -7,6 +7,8 @@ import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons
 
 const SeasonModal = ({handleClose}) => {
 
+    const node = useRef();
+
     const history = useHistory();
     const dispatch = useDispatch();
     
@@ -14,6 +16,14 @@ const SeasonModal = ({handleClose}) => {
 
     const [ seasons, setSeasons ] = useState();
     const [ page, setPage ] = useState(0);
+
+    // mount and unmount
+    useEffect( () => {
+        document.addEventListener("mousedown", handleClickOutside);
+        return( ()=> {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }) 
+    },[])
 
     useEffect( ( )=> {
         const fetchSeasons = async () => {
@@ -49,6 +59,12 @@ const SeasonModal = ({handleClose}) => {
             setPage(page + 1);
     }
 
+    const handleClickOutside = (event) => {
+        if(!node.current.contains(event.target)) {
+            handleClose();
+        } 
+    }
+
     const displaySeasons = () => {
         if (seasons) {
             return (
@@ -68,14 +84,14 @@ const SeasonModal = ({handleClose}) => {
     }
 
     return(
-        <div className="modal">
+        <div className="modal" ref={node}>
             <div className="modal__header">
                 <button onClick={handlePrevPage}><FontAwesomeIcon icon={faChevronLeft} /></button>
                 <p className="modal__title">Select a season</p>
                 <button onClick={handleNextPage}><FontAwesomeIcon icon={faChevronRight} /></button>
             </div>
             {displaySeasons()}
-            <button onClick={handleClose}>Close</button>
+            <button className="modal__button" onClick={handleClose}>Close</button>
         </div>
     )
 }
