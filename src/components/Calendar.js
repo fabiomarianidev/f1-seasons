@@ -8,7 +8,7 @@ const Calendar = ({races}) => {
             <header className="tableComponent__header">
                 <p>Calendar</p>
             </header>
-            <table>
+            <table className="tableCalendar">
                 <thead>
                     <tr>
                         <th>Round</th>

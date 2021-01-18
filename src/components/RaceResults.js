@@ -15,7 +15,7 @@ const RaceResults = ({results}) => {
             <header className="tableComponent__header">
                 <p>Final Results</p>
             </header>
-            <table>
+            <table className="tableRaceResults">
                 <thead>
                     <tr>
                         <th>Position</th>
