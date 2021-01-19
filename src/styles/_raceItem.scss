@@ -7,13 +7,14 @@
     text-transform: uppercase;
 }
 
+.raceItem:last-child {
+    margin-bottom: unset;
+}
+
 .raceItem > a {
     text-decoration: none;
 }
 
-.raceItem:last-child {
-    margin-bottom: unset;
-}
 
 .raceItem__race {
     color: $white;

@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Header from "./components/Header";
-import Main from "./components/Main";
+import MainSection from "./components/MainSection";
 import Sidebar from "./components/Sidebar";
 import SeasonDetails from "./components/SeasonDetails";
 import RaceDetails from "./components/RaceDetails";
@@ -15,11 +15,11 @@ function App() {
     <div className="App">
       <Router>
         <Header />
-        <Main>
+        <MainSection>
           <Sidebar />
             <Route exact path="/" component={SeasonDetails} />
             <Route path="/:race" component={RaceDetails} />
-        </Main>
+        </MainSection>
       </Router>
     </div>
   );

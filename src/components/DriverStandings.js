@@ -5,7 +5,7 @@ const DriverStandings = ({drivers}) => (
         <header className="tableComponent__header">
             <p>Drivers Standings</p>
         </header>
-        <table className="tableDrivers">
+        <table className="drivers">
             <thead>
                 <tr>
                     <th>Position</th>

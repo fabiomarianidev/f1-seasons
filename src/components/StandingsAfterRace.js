@@ -29,7 +29,7 @@ const StandingsAfterRace = ({ season, round }) => {
         if (isLoading) return <p>Loading..</p>
         if (isError) return <p>There was an error</p>
         return(
-            <table className="tableDrivers">
+            <table className="drivers">
                 <thead>
                     <tr>
                         <th>Position</th>

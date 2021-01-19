@@ -28,13 +28,17 @@
         text-align: left;
     }
 
+    td {
+        padding: 0.1rem 0rem 0.1rem 0.5rem;
+    }
+
     tbody tr:nth-child(odd) {
         background-color: lightgray;
     }
     
 }
 
-.tableDrivers {
+.tableComponent .drivers {
 
     th:nth-child(1) {
         width: 15%;
@@ -58,7 +62,7 @@
 
 }
 
-.tableConstructors {
+.tableComponent .constructors {
 
     th:nth-child(1) {
         width: 15%;
@@ -91,7 +95,7 @@
     }
 }
 
-.tableRaceResults {
+.tableComponent .raceResults {
     th:nth-child(1) {
         width: 15%;
     }

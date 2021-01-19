@@ -5,7 +5,7 @@ const ConstructorStandings = ({constructors}) => (
         <header className="tableComponent__header">
             <p>Constructors Standings</p>
         </header>
-        <table className="tableConstructors">
+        <table className="constructors">
             <thead>
                 <tr>
                     <th>Position</th>
